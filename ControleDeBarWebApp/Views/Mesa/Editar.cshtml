@@ -1,0 +1,42 @@
+﻿@using ControleDeBarWebApp.Models
+
+@model EditarMesaViewModel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Edição de Mesa";
+}
+
+<hr />
+<div class="row justify-content-center my-5">
+    <div class="col-md-8">
+        <div class="card rounded-4 border-0">
+            <div class="card-body p-md-5">
+                <form asp-action="Editar" asp-route-id="@Model.Id" method="post">
+                    <h3>Formulário de Edição</h3>
+
+                    <div class="form-group d-grid mt-3 gap-2">
+                        <label asp-for="Numero" class="control-label fs-5">Número:</label>
+                        <input asp-for="Numero" class="form-control" value="@Model.Numero" />
+                        <span asp-validation-for="Numero" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group d-grid mt-3 gap-2">
+                        <label asp-for="Capacidade" class="control-label fs-5">Capacidade:</label>
+                        <input asp-for="Capacidade" class="form-control" value="@Model.Capacidade" />
+                        <span asp-validation-for="Capacidade" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-end mt-5 gap-3">
+                        <a href="/mesas">Voltar para a listagem</a>
+                        <button type="submit" class="btn btn-primary rounded-3 px-5">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

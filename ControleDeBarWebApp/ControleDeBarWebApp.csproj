@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <None Include="wwwroot\lib\bootstrap-5.3.6-dist\.DS_Store" />
+    <None Include="wwwroot\lib\bootstrap-5.3.6-dist\css\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\controleDeBar.Dominio\controleDeBar.Dominio.csproj" />
+    <ProjectReference Include="..\ControleDeBar.Infraestrutura.Arquivos\ControleDeBar.Infraestrutura.Arquivos.csproj" />
   </ItemGroup>
 
 </Project>

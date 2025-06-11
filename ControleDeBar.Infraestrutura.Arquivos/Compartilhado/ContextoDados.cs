@@ -60,6 +60,5 @@ public class ContextoDados
         if (contextoArmazenado == null) return;
 
         Mesas = contextoArmazenado.Mesas;
-
     }
 }
