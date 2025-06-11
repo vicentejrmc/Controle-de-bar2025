@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36127.28 d17.14
+VisualStudioVersion = 17.14.36127.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Apresentação", "1.Apresentação", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Infraestrutura", "3.Infraestrutura", "{369CB01D-A1A7-72D2-AABC-3F0945D148A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleDeBarWebApp", "ControleDeBarWebApp\ControleDeBarWebApp.csproj", "{0C260E1B-124B-4EA5-97B8-6A847CBFDA33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "controleDeBar.Dominio", "controleDeBar.Dominio\controleDeBar.Dominio.csproj", "{88480FC7-E8AE-4618-BEA8-4D45845AA616}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,12 +23,17 @@ Global
 		{0C260E1B-124B-4EA5-97B8-6A847CBFDA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C260E1B-124B-4EA5-97B8-6A847CBFDA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C260E1B-124B-4EA5-97B8-6A847CBFDA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88480FC7-E8AE-4618-BEA8-4D45845AA616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88480FC7-E8AE-4618-BEA8-4D45845AA616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88480FC7-E8AE-4618-BEA8-4D45845AA616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88480FC7-E8AE-4618-BEA8-4D45845AA616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0C260E1B-124B-4EA5-97B8-6A847CBFDA33} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{88480FC7-E8AE-4618-BEA8-4D45845AA616} = {8445150C-7018-4426-A21A-FD19C811BDDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00D771DA-AEE4-41AC-8073-98FDBDCC45CE}
