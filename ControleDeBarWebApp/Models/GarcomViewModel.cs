@@ -1,11 +1,19 @@
 ﻿using controleDeBar.Dominio.ModuloGarcom;
 using ControleDeBarWebApp.Extensions;
+using System.ComponentModel.DataAnnotations;
 
 namespace ControleDeBarWebApp.Models
 {
     public abstract class FormularioGarcomViewModel
     {
+        [Required(ErrorMessage = "O campo \"Nome\" é obrigatório.")]
+        [MinLength(3, ErrorMessage = "O campo \"Nome\" precisa conter ao menos 3 caracteres.")]
+        [MaxLength(100, ErrorMessage = "O campo \"Nome\" precisa conter no máximo 100 caracteres.")]
         public string Nome { get; set; }
+
+        [Required(ErrorMessage = "O campo \"CPF\" é obrigatório.")]
+        [RegularExpression(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$",
+    ErrorMessage = "O campo \"CPF\" precisa seguir o formato: 000.000.000-00.")]
         public string Cpf { get; set; }
     }
 
@@ -54,14 +62,10 @@ namespace ControleDeBarWebApp.Models
 
         public VisualizarGarcomViewModel(List<Garcom> garsons)
         {
-            Registros = [];
+            Registros = new List<DetalhesGarcomViewModel>();
 
-            foreach (var m in garsons)
-            {
-                var detalhesVM = m.ParaDetalhesVM();
-
-                Registros.Add(detalhesVM);
-            }
+            foreach (var g in garsons)
+                Registros.Add(g.ParaDetalhesVM());
         }
     }
 
