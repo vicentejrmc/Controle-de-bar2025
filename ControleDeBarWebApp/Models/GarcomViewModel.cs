@@ -1,4 +1,5 @@
 ﻿using controleDeBar.Dominio.ModuloGarcom;
+using controleDeBar.Dominio.ModuloMesa;
 using ControleDeBarWebApp.Extensions;
 using System.ComponentModel.DataAnnotations;
 
@@ -62,10 +63,14 @@ namespace ControleDeBarWebApp.Models
 
         public VisualizarGarcomViewModel(List<Garcom> garsons)
         {
-            Registros = new List<DetalhesGarcomViewModel>();
+            Registros = [];
 
             foreach (var g in garsons)
-                Registros.Add(g.ParaDetalhesVM());
+            {
+                var detalhesVM = g.ParaDetalhesVM();
+
+                Registros.Add(detalhesVM);
+            }
         }
     }
 

@@ -6,7 +6,12 @@ namespace ControleDeBarWebApp.Models
 {
     public abstract class FormularioMesaViewModel
     {
+        [Required(ErrorMessage = "O campo \"Nome\" é obrigatório.")]
+        [Range(1, 100, ErrorMessage = "O campo \"Nome\" precisa conter um valor entre 1 e 100.")]
         public int Numero { get; set; }
+
+        [Required(ErrorMessage = "O campo \"Capacidade\" é obrigatório.")]
+        [Range(1, 100, ErrorMessage = "O campo \"Capacidade\" precisa conter um valor entre 1 e 100.")]
         public int Capacidade { get; set; }
     }
 

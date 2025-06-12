@@ -12,7 +12,7 @@ public class ContextoDados
     private string arquivoArmazenamento = "dados-controle-bar.json";
 
     public List<Mesa> Mesas { get; set; }
-    public List<Garcom> Garcons { get; internal set; }
+    public List<Garcom> Garcons { get; set; }
 
     public ContextoDados()
     {
