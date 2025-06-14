@@ -34,14 +34,12 @@ namespace ControleDeBarWebApp.Models
             foreach (var m in mesas)
             {
                 var mesaDisponivel = new SelectListItem(m.Numero.ToString(), m.Id.ToString());
-
                 MesasDisponiveis.Add(mesaDisponivel);
             }
 
             foreach (var g in garcons)
             {
                 var nomeDisponivel = new SelectListItem(g.Nome.ToString(), g.Id.ToString());
-
                 GarconsDisponiveis.Add(nomeDisponivel);
             }
         }
