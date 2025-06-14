@@ -4,6 +4,7 @@ using ControleDeBar.Infraestrutura.Arquivos.ModuloProduto;
 using ControleDeBarWebApp.Extensions;
 using ControleDeBarWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32;
 
 namespace ControleDeBarWebApp.Controllers
 {
@@ -22,10 +23,8 @@ namespace ControleDeBarWebApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-           var registros = repositorioProduto.SelecionarRegistros();
-
+            var registros = repositorioProduto.SelecionarRegistros();
             var visualizarVM = new VisualizarProdutosViewModel(registros);
-
             return View(visualizarVM);
         }
 
@@ -37,6 +36,7 @@ namespace ControleDeBarWebApp.Controllers
         }
 
         [HttpPost("cadastrar")]
+        [ValidateAntiForgeryToken]
         public IActionResult Cadastrar(CadastrarProdutoViewModel cadastrarVM)
         {
             var registros = repositorioProduto.SelecionarRegistros();
@@ -57,7 +57,37 @@ namespace ControleDeBarWebApp.Controllers
 
             var novoProduto = cadastrarVM.ParaEntidade();
             repositorioProduto.CadastrarRegistro(novoProduto);
+            return RedirectToAction(nameof(Index));
+        }
 
+        [HttpGet("editar/{id:guid}")]
+        public IActionResult Editar(Guid id)
+        {
+            var registro = repositorioProduto.SelecionarRegistroPorId(id);
+            var editarVM = new EditarProdutoViewModel(id, registro.Nome, registro.Valor);
+            return View(editarVM);
+        }
+
+        [HttpPost("editar/{id:guid}")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(Guid id, EditarProdutoViewModel editarVM)
+        {
+            var registros = repositorioProduto.SelecionarRegistros();
+
+            foreach (var item in registros)
+            {
+                if (!item.Id.Equals(id) && item.Nome.Equals(editarVM.Nome))
+                {
+                    ModelState.AddModelError("CadastroUnico", "Já existe um produto registrado com este nome.");
+                    break;
+                }
+            }
+
+            if (!ModelState.IsValid)
+                return View(editarVM);
+
+            var entidadeEditada = editarVM.ParaEntidade();
+            repositorioProduto.EditarRegistro(id, entidadeEditada);
             return RedirectToAction(nameof(Index));
         }
     }
