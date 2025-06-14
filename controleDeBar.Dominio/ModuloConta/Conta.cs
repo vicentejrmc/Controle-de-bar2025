@@ -20,6 +20,12 @@ namespace controleDeBar.Dominio.ModuloConta
             Pedidos = new List<Pedido>();
         }
 
+        public override void AtualizarRegistro(Conta registroAtualizado)
+        {
+            EstaAberta = registroAtualizado.EstaAberta;
+            Fechamento = registroAtualizado.Fechamento;
+        }
+
         public Conta(string titular, Mesa mesa, Garcom garcom) : this()
         {
             Id = Guid.NewGuid();
@@ -88,12 +94,6 @@ namespace controleDeBar.Dominio.ModuloConta
                 valorTotal += p.CalcularTotalParcial();
 
             return valorTotal;
-        }
-
-        public override void AtualizarRegistro(Conta registroAtualizado)
-        {
-            EstaAberta = registroAtualizado.EstaAberta;
-            Fechamento = registroAtualizado.Fechamento;
         }
     }
 }
