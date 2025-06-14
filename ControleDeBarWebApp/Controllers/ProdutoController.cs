@@ -90,5 +90,21 @@ namespace ControleDeBarWebApp.Controllers
             repositorioProduto.EditarRegistro(id, entidadeEditada);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet("excluir/{id:guid}")]
+        public IActionResult Excluir(Guid id)
+        {
+            var registro = repositorioProduto.SelecionarRegistroPorId(id);
+            var excluirVM = new ExcluirProdutoViewModel(registro.Id, registro.Nome);
+            return View(excluirVM);
+        }
+
+        [HttpPost("excluir/{id:guid}")]
+        public IActionResult ExcluirConfirmado(Guid id)
+        {
+            repositorioProduto.ExcluirRegistro(id);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

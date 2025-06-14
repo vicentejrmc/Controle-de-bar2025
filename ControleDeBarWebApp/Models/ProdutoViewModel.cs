@@ -46,7 +46,6 @@ namespace ControleDeBarWebApp.Models
     {
         public Guid Id { get; set; }
         public string Nome { get; set; }
-
         public ExcluirProdutoViewModel(Guid id, string nome)
         {
             Id = id;
