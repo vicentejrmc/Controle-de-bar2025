@@ -7,6 +7,7 @@ using ControleDeBar.Infraestrutura.Arquivos.ModuloConta;
 using ControleDeBar.Infraestrutura.Arquivos.ModuloGarcom;
 using ControleDeBar.Infraestrutura.Arquivos.ModuloMesa;
 using ControleDeBar.Infraestrutura.Arquivos.ModuloProduto;
+using ControleDeBarWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleDeBarWebApp.Controllers
@@ -29,9 +30,24 @@ namespace ControleDeBarWebApp.Controllers
             repositorioProduto = new RepositorioProdutoEmArquivo(contextoDados);
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(string status)
         {
-            return View();
+            List<Conta> registros;
+
+            switch(status)
+            {
+                case "abertas": registros = repositorioConta.SelecionarContasAbertas();
+                    break;
+                case "fechadas": registros = repositorioConta.SelecionarContasFechadas();
+                    break;
+                default: registros = repositorioConta.SelecionarContas();
+                    break;    
+            }
+
+            var contas = repositorioConta.SelecionarContas();
+            var visualizarVM = new VisualizarContasViewModel(contas);
+            return View(visualizarVM);
         }
     }
 }
