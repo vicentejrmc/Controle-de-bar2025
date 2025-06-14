@@ -2,6 +2,7 @@
 using controleDeBar.Dominio.ModuloGarcom;
 using controleDeBar.Dominio.ModuloMesa;
 using controleDeBar.Dominio.ModuloProduto;
+using ControleDeBarWebApp.Extensions;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
@@ -181,3 +182,4 @@ namespace ControleDeBarWebApp.Models
             }
         }
     }
+}
