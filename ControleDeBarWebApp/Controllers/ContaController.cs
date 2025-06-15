@@ -36,14 +36,17 @@ namespace ControleDeBarWebApp.Controllers
         {
             List<Conta> registros;
 
-            switch(status)
+            switch (status)
             {
-                case "abertas": registros = repositorioConta.SelecionarContasAbertas();
+                case "abertas":
+                    registros = repositorioConta.SelecionarContasAbertas();
                     break;
-                case "fechadas": registros = repositorioConta.SelecionarContasFechadas();
+                case "fechadas":
+                    registros = repositorioConta.SelecionarContasFechadas();
                     break;
-                default: registros = repositorioConta.SelecionarContas();
-                    break;    
+                default:
+                    registros = repositorioConta.SelecionarContas();
+                    break;
             }
 
             var contas = repositorioConta.SelecionarContas();
@@ -154,6 +157,18 @@ namespace ControleDeBarWebApp.Controllers
             var gerenciarPedidosVm = new GerenciarPedidosViewModel(contaSelecionada, produtos);
 
             return View("GerenciarPedidos", gerenciarPedidosVm);
+        }
+
+        [HttpGet("faturamento")]
+        public IActionResult Faturamento(DateTime? data)
+        {
+            if (!data.HasValue)
+            return View();
+
+            var contas = repositorioConta.SelecionarContasPorPeriodo(data.GetValueOrDefault());
+            var faturamentoVM = new FaturamentoViewModel(contas);
+
+            return View(faturamentoVM);
         }
     }
 }
