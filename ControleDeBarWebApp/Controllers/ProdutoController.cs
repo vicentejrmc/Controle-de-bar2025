@@ -1,6 +1,6 @@
 ﻿using controleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.Infraestrura.Arquivos.Compartilhado;
-using ControleDeBar.Infraestrutura.Arquivos.ModuloProduto;
+using ControleDeBar.Infraestrutura.SqlServer;
 using ControleDeBarWebApp.Extensions;
 using ControleDeBarWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +17,7 @@ namespace ControleDeBarWebApp.Controllers
         public ProdutoController()
         {
             contextoDados = new ContextoDados(true);
-            repositorioProduto = new RepositorioProdutoEmArquivo(contextoDados);
+            repositorioProduto = new RepositorioProdutoEmSql();
         }
 
         [HttpGet]
