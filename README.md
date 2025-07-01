@@ -1,6 +1,6 @@
 # Controle de Bar 2025
 
-### Desenvolvido como uma aplicação Web na plataforma .Net Core MVC, utilizando da linguagem de C#. Desenvolvido durante o curso Full-Stack da Academia do Programador 2025
+### Desenvolvido como uma aplicação Web na plataforma .Net Core MVC, utilizando da linguagem C#. Desenvolvido durante o curso Full-Stack da Academia do Programador 2025
 
 
 
