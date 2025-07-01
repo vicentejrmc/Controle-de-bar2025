@@ -33,21 +33,74 @@ namespace ControleDeBar.Infraestrutura.SqlServer
             comandoInserir.ExecuteNonQuery();
 
             coneccaoComBanco.Close();
-        }
+        } 
 
-        public bool EditarRegistro(Guid idRegistro, Produto registroEditado)
+        public bool EditarRegistro(Guid idRegistro, Produto registroEditado) 
         {
-            throw new NotImplementedException();
+            var sqlEditar =
+               @"UPDATE [TBPRODUTO]
+                    SET
+                        [NOME] = @NOME,
+                        [VALOR] = @VALOR
+                    WHERE
+                        [ID] = @ID";
+
+            SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
+            SqlCommand comandoEdicao = new SqlCommand(sqlEditar, coneccaoComBanco);
+
+            registroEditado.Id = idRegistro;
+            ConfigurarParametrosProduto(registroEditado, comandoEdicao);
+            coneccaoComBanco.Open();
+
+            var linhasAfetadas = comandoEdicao.ExecuteNonQuery();
+            coneccaoComBanco.Close();
+
+            return linhasAfetadas > 0;
         }
 
         public bool ExcluirRegistro(Guid idRegistro)
         {
-            throw new NotImplementedException();
+            var sqlEcluir =
+                @"DELETE FROM [TBPRODUTO]
+                    WHERE
+                        [ID] = @ID";
+
+            SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
+            SqlCommand comandoExclusao = new SqlCommand(sqlEcluir, coneccaoComBanco);
+            comandoExclusao.Parameters.AddWithValue("ID", idRegistro);
+            coneccaoComBanco.Open();
+
+            var linhasAfetadas = comandoExclusao.ExecuteNonQuery();
+            coneccaoComBanco.Close();
+
+            return linhasAfetadas > 0;
         }
 
         public Produto SelecionarRegistroPorId(Guid idRegistro)
         {
-            throw new NotImplementedException();
+            var sqlSelecionarPorId =
+                @"SELECT
+                    [ID],
+                    [NOME],
+                    [VALOR]
+                FROM
+                    [TBPRODUTO]
+                WHERE
+                    [ID] = @ID";
+
+            SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorId, coneccaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("ID", idRegistro);
+
+            coneccaoComBanco.Open();
+            SqlDataReader reader = comandoSelecao.ExecuteReader();
+
+            Produto produto = null;
+            if (reader.Read())
+                produto = ConverterParaProduto(reader);
+
+            return produto;
         }
 
         public List<Produto> SelecionarRegistros()
@@ -76,7 +129,7 @@ namespace ControleDeBar.Infraestrutura.SqlServer
             coneccaoComBanco.Close();
 
             return produtos;
-        } //ok
+        }
 
         private Produto ConverterParaProduto(SqlDataReader reader)
         {
