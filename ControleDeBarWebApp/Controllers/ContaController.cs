@@ -3,10 +3,10 @@ using controleDeBar.Dominio.ModuloGarcom;
 using controleDeBar.Dominio.ModuloMesa;
 using controleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.Infraestrura.Arquivos.Compartilhado;
-using ControleDeBar.Infraestrutura.Arquivos.ModuloConta;
-using ControleDeBar.Infraestrutura.Arquivos.ModuloGarcom;
-using ControleDeBar.Infraestrutura.Arquivos.ModuloMesa;
-using ControleDeBar.Infraestrutura.Arquivos.ModuloProduto;
+using ControleDeBar.Infraestrutura.SqlServer.ModuloConta;
+using ControleDeBar.Infraestrutura.SqlServer.ModuloGarcom;
+using ControleDeBar.Infraestrutura.SqlServer.ModuloMesa;
+using ControleDeBar.Infraestrutura.SqlServer.ModuloProduto;
 using ControleDeBarWebApp.Extensions;
 using ControleDeBarWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -25,10 +25,10 @@ namespace ControleDeBarWebApp.Controllers
         public ContaController()
         {
             contextoDados = new ContextoDados(true);
-            repositorioConta = new RepositorioContaEmArquivo(contextoDados);
-            repositorioGarcom = new RepositorioGarcomEmArquivo(contextoDados);
-            repositorioMesa = new RepositorioMesaEmArquivo(contextoDados);
-            repositorioProduto = new RepositorioProdutoEmArquivo(contextoDados);
+            repositorioConta = new RepositorioContaEmSql();
+            repositorioGarcom = new RepositorioGarcomEmSql();
+            repositorioMesa = new RepositorioMesaEmSql();
+            repositorioProduto = new RepositorioProdutoEmSql();
         }
 
         [HttpGet]
