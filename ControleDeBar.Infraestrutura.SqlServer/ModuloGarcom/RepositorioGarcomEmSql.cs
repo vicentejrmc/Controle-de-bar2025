@@ -38,17 +38,70 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloGarcom
 
         public bool EditarRegistro(Guid idRegistro, Garcom registroEditado)
         {
-            throw new NotImplementedException();
+            var sqlEditar =
+                @"UPDATE [TBGARCOM]
+                    SET
+                        [NOME] = @NOME,
+                        [CPF] = @CPF
+                    WHERE
+                        [ID] = @ID";
+
+            SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
+            SqlCommand comandoEdicao = new SqlCommand(sqlEditar, coneccaoComBanco);
+
+            registroEditado.Id = idRegistro;
+            ConfigurarParametrosGarcom(registroEditado, comandoEdicao);
+            coneccaoComBanco.Open();
+
+            var linhasAfetadas = comandoEdicao.ExecuteNonQuery();
+            coneccaoComBanco.Close();
+
+            return linhasAfetadas > 0;
         }
 
         public bool ExcluirRegistro(Guid idRegistro)
         {
-            throw new NotImplementedException();
+            var sqlEcluir =
+                  @"DELETE FROM [TBGARCOM]
+                    WHERE
+                        [ID] = @ID";
+
+            SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
+            SqlCommand comandoExclusao = new SqlCommand(sqlEcluir, coneccaoComBanco);
+            comandoExclusao.Parameters.AddWithValue("ID", idRegistro);
+            coneccaoComBanco.Open();
+
+            var linhasAfetadas = comandoExclusao.ExecuteNonQuery();
+            coneccaoComBanco.Close();
+
+            return linhasAfetadas > 0;
         }
 
         public Garcom SelecionarRegistroPorId(Guid idRegistro)
         {
-            throw new NotImplementedException();
+            var sqlSelecionarPorId =
+                @"SELECT
+                    [ID],
+                    [NOME],
+                    [CPF]
+                FROM
+                    [TBGARCOM]
+                WHERE
+                    [ID] = @ID";
+
+            SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorId, coneccaoComBanco);
+
+            comandoSelecao.Parameters.AddWithValue("ID", idRegistro);
+
+            coneccaoComBanco.Open();
+            SqlDataReader reader = comandoSelecao.ExecuteReader();
+
+            Garcom garcom = null;
+            if (reader.Read())
+                garcom = ConverterParaGarcom(reader);
+
+            return garcom;
         }
 
         public List<Garcom> SelecionarRegistros()
