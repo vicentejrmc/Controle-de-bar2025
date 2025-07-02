@@ -1,7 +1,7 @@
 ﻿using controleDeBar.Dominio.ModuloProduto;
 using Microsoft.Data.SqlClient;
 
-namespace ControleDeBar.Infraestrutura.SqlServer
+namespace ControleDeBar.Infraestrutura.SqlServer.ModuloProduto
 {
     public class RepositorioProdutoEmSql : IRepositorioProduto
     {

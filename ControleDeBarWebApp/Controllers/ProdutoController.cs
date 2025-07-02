@@ -1,6 +1,6 @@
 ﻿using controleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.Infraestrura.Arquivos.Compartilhado;
-using ControleDeBar.Infraestrutura.SqlServer;
+using ControleDeBar.Infraestrutura.SqlServer.ModuloProduto;
 using ControleDeBarWebApp.Extensions;
 using ControleDeBarWebApp.Models;
 using Microsoft.AspNetCore.Mvc;

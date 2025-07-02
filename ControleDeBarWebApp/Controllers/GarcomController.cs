@@ -1,6 +1,7 @@
 ﻿using controleDeBar.Dominio.ModuloGarcom;
 using ControleDeBar.Infraestrura.Arquivos.Compartilhado;
 using ControleDeBar.Infraestrutura.Arquivos.ModuloGarcom;
+using ControleDeBar.Infraestrutura.SqlServer.ModuloGarcom;
 using ControleDeBarWebApp.Extensions;
 using ControleDeBarWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace ControleDeBarWebApp.Controllers
         public GarcomController()
         {
             contextoDados = new ContextoDados(true);
-            repositorioGarcom = new RepositorioGarcomEmArquivo(contextoDados);
+            repositorioGarcom = new RepositorioGarcomEmSql();
         }
 
         public IActionResult Index()
