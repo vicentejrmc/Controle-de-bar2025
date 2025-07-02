@@ -1,6 +1,7 @@
 ﻿using controleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Infraestrura.Arquivos.Compartilhado;
 using ControleDeBar.Infraestrutura.Arquivos.ModuloMesa;
+using ControleDeBar.Infraestrutura.SqlServer.ModuloMesa;
 using ControleDeBar.WebApp.Extensions;
 using ControleDeBarWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace ControleDeBarWebApp.Controllers
         public MesaController()
         {
             contextoDados = new ContextoDados(true);
-            repositorioMesa = new RepositorioMesaEmArquivo(contextoDados);
+            repositorioMesa = new RepositorioMesaEmSql();
         }
 
         [HttpGet]
