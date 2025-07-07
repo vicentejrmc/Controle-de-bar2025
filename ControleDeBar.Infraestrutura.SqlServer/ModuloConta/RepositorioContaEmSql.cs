@@ -215,6 +215,8 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
             SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
             SqlCommand comando = new SqlCommand(sqlSelecionar, coneccaoComBanco);
             coneccaoComBanco.Open();
+            comando.Parameters.AddWithValue("@DATA", data.Date);
+
             var reader = comando.ExecuteReader();
 
             while (reader.Read())
