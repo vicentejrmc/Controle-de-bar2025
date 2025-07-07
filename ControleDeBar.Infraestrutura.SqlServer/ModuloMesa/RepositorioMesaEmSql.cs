@@ -85,7 +85,7 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloMesa
             return linhasAfetadas > 0;
         }
 
-        public Mesa SelecionarRegistroPorId(Guid idRegistro)
+        public Mesa SelecionarRegistroPorId(Guid idRegistro)    
         {
             var sqlSelecionarPorId =
                 @"SELECT
