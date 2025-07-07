@@ -14,4 +14,8 @@
     <ProjectReference Include="..\controleDeBar.Dominio\controleDeBar.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ModuloConta\" />
+  </ItemGroup>
+
 </Project>
