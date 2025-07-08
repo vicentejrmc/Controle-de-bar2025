@@ -75,7 +75,7 @@ namespace ControleDeBar.Infraestrutura.Arquivos.ModuloConta
 
             foreach (var item in registros)
             {
-                if (item.Fechamento.Date == data.Date)
+                if (item.Fechamento?.Date == data.Date)
                     contasDoPeriodo.Add(item);
             }
 

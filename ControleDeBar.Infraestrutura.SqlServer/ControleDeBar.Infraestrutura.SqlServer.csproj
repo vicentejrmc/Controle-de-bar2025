@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\controleDeBar.Dominio\controleDeBar.Dominio.csproj" />
+    <ProjectReference Include="..\ControleDeBar.Infraestrutura.Arquivos\ControleDeBar.Infraestrutura.Arquivos.csproj" />
   </ItemGroup>
 
 </Project>

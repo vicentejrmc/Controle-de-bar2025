@@ -11,7 +11,7 @@ namespace controleDeBar.Dominio.ModuloConta
         public Mesa Mesa { get; set; }
         public Garcom Garcom { get; set; }
         public DateTime Abertura { get; set; }
-        public DateTime Fechamento { get; set; }
+        public DateTime? Fechamento { get; set; }
         public bool EstaAberta { get; set; }
         public List<Pedido> Pedidos { get; set; }
 

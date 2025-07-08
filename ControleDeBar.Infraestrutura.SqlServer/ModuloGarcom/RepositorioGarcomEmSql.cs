@@ -1,5 +1,4 @@
 ﻿using controleDeBar.Dominio.ModuloGarcom;
-using controleDeBar.Dominio.ModuloProduto;
 using Microsoft.Data.SqlClient;
 
 namespace ControleDeBar.Infraestrutura.SqlServer.ModuloGarcom
