@@ -125,7 +125,7 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
                 FROM
                     [TBCONTA]
                 WHERE
-                    [ESTAABERTA] = 0";
+                    [ESTAABERTA] = 1";
 
             SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
             coneccaoComBanco.Open();

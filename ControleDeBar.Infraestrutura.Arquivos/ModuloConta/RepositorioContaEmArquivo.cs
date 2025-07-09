@@ -91,5 +91,10 @@ namespace ControleDeBar.Infraestrutura.Arquivos.ModuloConta
         {
             contexto.Salvar();
         }
+
+        public void Fechar()
+        {
+           contexto.Salvar();
+        }
     }
 }
