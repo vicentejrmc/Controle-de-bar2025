@@ -6,6 +6,7 @@ namespace controleDeBar.Dominio.ModuloConta
     {
         public Guid Id { get; set; }
         public Produto Produto { get; set; }
+        public Conta Conta { get; set; }
         public int QuantidadeSolicitada { get; set; }
 
         public Pedido() { }

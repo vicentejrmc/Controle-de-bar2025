@@ -134,12 +134,13 @@ namespace ControleDeBarWebApp.Controllers
             var contaSelecionada = repositorioConta.SelecionarPorId(id);
             var produtoSelecionado = repositorioProduto.SelecionarRegistroPorId(adicionarPedidoVm.IdProduto);
 
-            contaSelecionada.RegistrarPedido(
+
+            var pedido = contaSelecionada.RegistrarPedido(
                 produtoSelecionado,
                 adicionarPedidoVm.QuantidadeSolicitada
             );
 
-            contextoDados.Salvar();
+            repositorioConta.AdicionarPedido(pedido);
 
             var produtos = repositorioProduto.SelecionarRegistros();
             var gerenciarPedidosVm = new GerenciarPedidosViewModel(contaSelecionada, produtos);
@@ -153,6 +154,7 @@ namespace ControleDeBarWebApp.Controllers
             var contaSelecionada = repositorioConta.SelecionarPorId(id);
             var pedidoRemovido = contaSelecionada.RemoverPedido(idPedido);
             contextoDados.Salvar();
+            repositorioConta.RemoverPedido(pedidoRemovido);
             var produtos = repositorioProduto.SelecionarRegistros();
             var gerenciarPedidosVm = new GerenciarPedidosViewModel(contaSelecionada, produtos);
 

@@ -14,5 +14,7 @@ namespace controleDeBar.Dominio.ModuloConta
         List<Conta> SelecionarContasAbertas();
         List<Conta> SelecionarContasFechadas();
         List<Conta> SelecionarContasPorPeriodo(DateTime data);
+        void AdicionarPedido(Pedido pedido);
+        void RemoverPedido(Pedido pedidoRemovido);
     }
 }

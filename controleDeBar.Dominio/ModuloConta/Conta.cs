@@ -52,9 +52,10 @@ namespace controleDeBar.Dominio.ModuloConta
             Mesa.Desocupar();
         }
 
-        public Pedido RegistrarPedido(Produto produto, int quantidadeEscolhida)
-        {
+        public Pedido RegistrarPedido(Produto produto, int quantidadeEscolhida) 
+        {         
             Pedido novoPedido = new Pedido(produto, quantidadeEscolhida);
+            novoPedido.Conta = this;
 
             Pedidos.Add(novoPedido);
 

@@ -81,5 +81,15 @@ namespace ControleDeBar.Infraestrutura.Arquivos.ModuloConta
 
             return contasDoPeriodo;
         }
+
+        public void AdicionarPedido(Pedido pedido)
+        {
+            contexto.Salvar();
+        }
+
+        public void RemoverPedido(Pedido pedidoRemovido)
+        {
+            contexto.Salvar();
+        }
     }
 }

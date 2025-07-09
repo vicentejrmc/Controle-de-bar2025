@@ -215,15 +215,15 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
                 (
                     [ID],
                     [PRODUTO_ID],
-                    [QUANTIDADE],
-                    [CONTA_ID]
+                    [CONTA_ID],
+                    [QUANTIDADE]
                 )
                 VALUES
                 (
                     @ID,
                     @PRODUTO_ID,
-                    @QUANTIDADE,
-                    @CONTA_ID
+                    @CONTA_ID,
+                    @QUANTIDADE
                 );";
 
             SqlConnection conexaoComBanco = new SqlConnection(connectionString);
@@ -234,14 +234,29 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
             conexaoComBanco.Close();
         }
 
+        public void RemoverPedido(Pedido pedidoRemovido)
+        {
+            var sqlRemoverPedido =
+                @"DELETE FROM [TBPEDIDO]
+                WHERE
+                    [ID] = @ID";
+
+            SqlConnection conexaoComBanco = new SqlConnection(connectionString);
+            SqlCommand cmdRemover = new SqlCommand(sqlRemoverPedido, conexaoComBanco);
+            cmdRemover.Parameters.AddWithValue("ID", pedidoRemovido.Id);
+            conexaoComBanco.Open();
+            cmdRemover.ExecuteNonQuery();
+            conexaoComBanco.Close();
+        }
+
         private void CarregarPedidos(Conta conta)
         {
             var sqlPedidosDaConta =
                  @"SELECT
                       [ID],
                       [PRODUTO_ID],
-                      [QUANTIDADE],
-                      [CONTA_ID]
+                      [CONTA_ID],
+                      [QUANTIDADE]
                  FROM
                       [TBPEDIDO]
                  WHERE
@@ -264,7 +279,7 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
 
         private Pedido ConverterParaPedido(SqlDataReader reader, Conta conta)
         {
-            var produtoId = Guid.Parse(reader["PRODUTO"].ToString()!);
+            var produtoId = Guid.Parse(reader["PRODUTO_ID"].ToString()!);
             var produto = (Produto)SelecionarProdutoPorId(produtoId);
             var quantidade = Convert.ToInt32(reader["QUANTIDADE"]);
 
@@ -439,7 +454,9 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
         {
             comando.Parameters.AddWithValue("ID", pedido.Id);
             comando.Parameters.AddWithValue("PRODUTO_ID", pedido.Produto.Id);
+            comando.Parameters.AddWithValue("CONTA_ID", pedido.Conta.Id);
             comando.Parameters.AddWithValue("QUANTIDADE", pedido.QuantidadeSolicitada);
         }
+
     }
 }
