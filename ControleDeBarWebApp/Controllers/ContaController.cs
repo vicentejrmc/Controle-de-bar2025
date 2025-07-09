@@ -49,7 +49,8 @@ namespace ControleDeBarWebApp.Controllers
                     break;
             }
 
-            var visualizarVM = new VisualizarContasViewModel(registros);
+            var contas = repositorioConta.SelecionarContas();
+            var visualizarVM = new VisualizarContasViewModel(contas);
             return View(visualizarVM);
         }
 
@@ -133,7 +134,10 @@ namespace ControleDeBarWebApp.Controllers
             var contaSelecionada = repositorioConta.SelecionarPorId(id);
             var produtoSelecionado = repositorioProduto.SelecionarRegistroPorId(adicionarPedidoVm.IdProduto);
 
-            contaSelecionada.RegistrarPedido(produtoSelecionado,adicionarPedidoVm.QuantidadeSolicitada);
+            contaSelecionada.RegistrarPedido(
+                produtoSelecionado,
+                adicionarPedidoVm.QuantidadeSolicitada
+            );
 
             contextoDados.Salvar();
 
