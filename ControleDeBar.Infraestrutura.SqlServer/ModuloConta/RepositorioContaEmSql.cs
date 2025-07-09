@@ -73,7 +73,7 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
                 var conta = (Conta)ConverterParaConta(reader);
                 contas.Add(conta);
             }
- 
+
             coneccaoComBanco.Close();
 
             return contas;
@@ -93,7 +93,7 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
                 FROM
                     [TBCONTA]
                 WHERE
-                    [ESTAABERTA] = 0";
+                    CAST[ESTAABERTA] = 1";
 
             SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
             coneccaoComBanco.Open();
@@ -125,7 +125,7 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
                 FROM
                     [TBCONTA]
                 WHERE
-                    [ESTAABERTA] = 0";
+                    CAST[ESTAABERTA] = 0";
 
             SqlConnection coneccaoComBanco = new SqlConnection(connectionString);
             coneccaoComBanco.Open();
