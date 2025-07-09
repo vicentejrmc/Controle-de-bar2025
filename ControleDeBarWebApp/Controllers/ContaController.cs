@@ -49,8 +49,7 @@ namespace ControleDeBarWebApp.Controllers
                     break;
             }
 
-            var contas = repositorioConta.SelecionarContas();
-            var visualizarVM = new VisualizarContasViewModel(contas);
+            var visualizarVM = new VisualizarContasViewModel(registros);
             return View(visualizarVM);
         }
 

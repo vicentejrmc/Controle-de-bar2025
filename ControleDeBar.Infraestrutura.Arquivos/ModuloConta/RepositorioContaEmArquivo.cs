@@ -49,7 +49,7 @@ namespace ControleDeBar.Infraestrutura.Arquivos.ModuloConta
 
             foreach (var item in registros)
             {
-                if (item.EstaAberta)
+                if (item.EstaAberta == true)
                     contasAbertas.Add(item);
             }
 
@@ -62,7 +62,7 @@ namespace ControleDeBar.Infraestrutura.Arquivos.ModuloConta
 
             foreach (var item in registros)
             {
-                if (!item.EstaAberta)
+                if (item.EstaAberta == false)
                     contasFechadas.Add(item);
             }
 
