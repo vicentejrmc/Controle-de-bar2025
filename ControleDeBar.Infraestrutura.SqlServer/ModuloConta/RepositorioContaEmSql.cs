@@ -249,6 +249,28 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
             conexaoComBanco.Close();
         }
 
+        public void Fechar(Conta conta)
+        {
+            var sqlFecharConta =
+                @"UPDATE [TBCONTA]
+                SET
+                    [FECHAMENTO] = @FECHAMENTO,
+                    [ESTAABERTA] = @ESTAABERTA
+                WHERE
+                    [ID] = @ID";
+
+            SqlConnection conexaoComBanco = new SqlConnection(connectionString);
+            SqlCommand comandoFechar = new SqlCommand(sqlFecharConta, conexaoComBanco);
+            ConfigurarParametrosConta(conta, comandoFechar);
+            conexaoComBanco.Open();
+            comandoFechar.ExecuteNonQuery();
+            conta.Mesa.Desocupar();
+            conta.Fechamento = DateTime.Now;
+            conta.EstaAberta = false;
+
+            conexaoComBanco.Close();
+        }
+
         private void CarregarPedidos(Conta conta)
         {
             var sqlPedidosDaConta =
@@ -457,6 +479,5 @@ namespace ControleDeBar.Infraestrutura.SqlServer.ModuloConta
             comando.Parameters.AddWithValue("CONTA_ID", pedido.Conta.Id);
             comando.Parameters.AddWithValue("QUANTIDADE", pedido.QuantidadeSolicitada);
         }
-
     }
 }

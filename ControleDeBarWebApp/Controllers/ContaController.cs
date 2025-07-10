@@ -114,6 +114,7 @@ namespace ControleDeBarWebApp.Controllers
             var registroSelecionado = repositorioConta.SelecionarPorId(id);
             registroSelecionado.Fechar();
             contextoDados.Salvar();
+            repositorioConta.Fechar(registroSelecionado);
             return RedirectToAction(nameof(Index));
         }
 

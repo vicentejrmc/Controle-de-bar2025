@@ -9,6 +9,7 @@ namespace controleDeBar.Dominio.ModuloConta
     public interface IRepositorioConta 
     {
         void CadastrarConta(Conta conta);
+        void Fechar(Conta conta);
         Conta SelecionarPorId(Guid idRegistro);
         List<Conta> SelecionarContas();
         List<Conta> SelecionarContasAbertas();
